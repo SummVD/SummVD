@@ -1,4 +1,4 @@
-### Hi there 👋
+SummVD's GitHub page
 
 <!--
 **SummVD/SummVD** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
