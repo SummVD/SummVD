@@ -243,7 +243,6 @@ def w2vVectorizeToDict(vocabList, model, normalizeModels):
     #print(cptNotInVocab, "words not in models vocab // ", cptInVocab, "were in", "ration tot words / not in :", str((cptNotInVocab/(cptInVocab+cptNotInVocab))*100))
     return dicVecWord#, cptNotInVocab
 
-
 # each vector is clusterised, we do 1 list per cluster with each vector from the cluster
 #returns the list of these lists
 def clusteringToVocabLists(dicVecWord, nbCluster, method):
@@ -546,8 +545,8 @@ def launcherACPTunedCSV(wrt, articles, abstracts, dataset_name, processing, mode
 
 def optimize(model, articles, abstracts, dataset_name, size, numberSentencesOP = 0, step = -10):
     
-    if os.path.isfile('parameters.pkl') == True:
-        file = open('parameters.pkl', "rb")
+    if os.path.isfile('./Datasets/parameters.pkl') == True:
+        file = open('./Datasets/parameters.pkl', "rb")
         paramss = pickle.load(file)
         
         if isinstance(paramss[0], list):
@@ -692,15 +691,15 @@ def optimize(model, articles, abstracts, dataset_name, size, numberSentencesOP =
     params = bestPercent
     
     
-    if os.path.isfile('parameters.pkl') == False:
-        file = open("parameters.pkl",'wb')
+    if os.path.isfile('./Datasets/parameters.pkl') == False:
+        file = open("./Datasets/parameters.pkl",'wb')
         pickle.dump([params], file)
     else:
-        file = open("parameters.pkl", 'rb')
+        file = open("./Datasets/parameters.pkl", 'rb')
         para = pickle.load(file)
         para.append(params)
         
-        file = open("parameters.pkl", 'wb')
+        file = open("./Datasets/parameters.pkl", 'wb')
         pickle.dump(para, file)
         
     return params
