@@ -1,4 +1,4 @@
-SummVD's GitHub page
+**SummVD's GitHub page**
 
 To run the experiments like in the paper we have built a user-friendly script :
 
