@@ -1,9 +1,12 @@
-**SummVD's GitHub page**
+# SummVD's GitHub page
 
-To run the experiments like in the paper we have built a user-friendly script :
+**This code runs with Python 3.8**
 
-**Step 1** : Download via the google drive the datasets, word embedding and parameters : https://drive.google.com/drive/folders/1QjobC4w9G7nd2eva5sURUQ5Ys3s93gan?usp=sharing
-**Keep the same file structure**, which means that you have to put every file/folder like in the google drive in a folder called SummVD.
+## To run the experiments like in the paper we have built a user-friendly script :
+
+**Step 1** : Download via the google drive the datasets, word embedding and parameters : [Drive folder](https://drive.google.com/drive/folders/1QjobC4w9G7nd2eva5sURUQ5Ys3s93gan?usp=sharing)
+
+**You need to keep the same file structure**, which means that you have to put every file/folder like in the google drive in a folder called SummVD.
 
 **Step 2** : Download the github SummVD.py file, and put it to the **root of the SummVD folder**.
 
@@ -18,16 +21,10 @@ To run the experiments like in the paper we have built a user-friendly script :
 
 
 
-/
-/
-/
-/
-/
-/
 
 
 
-**Experimental functions :**
+## Experimental functions :
 
 To run the full length dataset, for size_output put the value 0, a custom value will take the n first documents and abstracts of the dataset.
 
