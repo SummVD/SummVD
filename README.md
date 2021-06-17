@@ -27,19 +27,20 @@
 
 To run the full length dataset, for size_output put the value 0, a custom value will take the n first documents and abstracts of the dataset.
 
-If you want to try a custom dataset, you will have to call it : dataset_name + "_documents.pkl" and the gold : dataset_name + "_gold.pkl" .
-If you want to try a custom word embedding, it has to work as follow : wordembedding["word"] => vector and have the format like the one in our Word Embedding folder.
-In that case, swap the word embedding model from the Word Embedding folder.
+If you want to try a custom dataset, you will have to call it : dataset_name + "_documents.pkl" and the gold : dataset_name + "_gold.pkl".  
+If you want to try a custom word embedding, it has to be in .pkl format. it has to work as follow : wordembedding["word"] => vector.  
+In that case, simply add --word_embedding_path "./Word Embedding Model/my_word_embedding.pkl"
 
-If you want to only score you will have yo use : python SummVD.py --dataset_name "dataset_name" --scoring True
-With the dataset added as dataset_name + "_documents.pkl" and the gold : dataset_name + "_gold.pkl" in Datasets folder
-And your summaries in output folder with as "dataset_name.txt"
+If you only want to use our Rouge scoring you will have to use : python SummVD.py --dataset_name "dataset_name" --scoring True  
+With the dataset added as dataset_name + "_documents.pkl" and the gold : dataset_name + "_gold.pkl" in Datasets folder.  
+Your summaries will have to be in output folder as "dataset_name.txt"
 
-If parameters already exist for a dataset, it will automatically choose it. 
-We present here the parameters associated with the number of sentences announced in the paper.
-Better results can be achieved with different number of sentences as talked about in the paper.
+If parameters already exist for a dataset, it will automatically choose it.  
+We present here the parameters associated with the number of sentences announced in the paper.  
+Better results can be achieved with different number of sentences, refered as "n", as talked about in the paper.  
 To obtain those results, you will have to run the optimisation with the number of sentences wanted.
-And if you want to do your own optimisation, don't copy the parameters file in your repository. The method will create it automatically for you.
+And if you want to do your own optimisation, don't copy the parameters file in your repository. The method will create it automatically for you.  
+In this case you can add to the original script the following :  --optimisation_rate 0.004 --nb_sentences n  
 
 
 <!--
