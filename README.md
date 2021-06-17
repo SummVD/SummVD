@@ -13,6 +13,19 @@ To run the experiments like in the paper we have built a user-friendly script :
 "python SummVD.py --dataset_name "dataset_name" --size_output 0 "
 **With dataset_name one of the following :** "duc", "reddit", "cnn", "reddit_tifu", "MN" (for Multi-News), "pubmed", "xsum"
 
+**Step 5** : As you will see, the output summaries are dropped in the output folder. From here you can run our Rouge scorer by using :
+"python SummVD.py --dataset_name "MN" --scoring True"
+
+
+
+/
+/
+/
+/
+/
+/
+
+
 
 **Experimental functions :**
 
