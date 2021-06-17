@@ -13,10 +13,10 @@
 
 **Step 4** : You can now run the experiments from the root of your SummVD folder as follow :  
 "python SummVD.py --dataset_name "dataset_name" --size_output 0"  
-**With dataset_name one of the following :** "duc", "reddit", "cnn", "reddit_tifu", "MN" (for Multi-News), "pubmed", "xsum". (size_output 0 means that we test the full length dataset. To run n example, simply put n instead).
+**With dataset_name one of the following :** "duc", "reddit", "cnn", "reddit_tifu", "MN" (for Multi-News), "pubmed", "xsum". (size_output 0 means that we test the full length dataset. To run n examples, simply put n instead).
 
-**Step 5** : As you will see, the output summaries are dropped in the output folder. From here you can run our Rouge scorer by using :  
-"python SummVD.py --dataset_name "MN" --scoring True"
+**Step 5** : As you will see, the output summaries are written in the output folder like : "dataset_name.txt". From here you can run our Rouge scorer by using :  
+"python SummVD.py --dataset_name "dataset_name" --scoring True"
 
 
 
