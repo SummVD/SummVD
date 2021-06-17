@@ -28,6 +28,7 @@
 To run the full length dataset, for size_output put the value 0, a custom value will take the n first documents and abstracts of the dataset.
 
 If you want to try a custom dataset, you will have to call it : dataset_name + "_documents.pkl" and the gold : dataset_name + "_gold.pkl". You will then be able to run it with --dataset_name "dataset_name".   
+
 If you want to try a custom word embedding, it has to be in .pkl format. it has to work as follow : wordembedding["word"] => vector.  
 In that case, simply add --word_embedding_path "./Word Embedding Model/my_word_embedding.pkl"
 
