@@ -9,7 +9,7 @@ To run the experiments like in the paper we have built a user-friendly script :
 
 **Step 3** : You need to have the packages from the requirements.txt with at least the same version on the most important packages which are : **gensim==3.8.3 / scipy==1.6.3 / rouge-score==0.0.4 / sklearn == 0.17.2**
 
-**Step 4** : You can now run the experiments as follow :
+**Step 4** : You can now run the experiments from the root of your SummVD folder as follow :
 "python SummVD.py --dataset_name "dataset_name" --size_output 0 "
 **With dataset_name one of the following :** "duc", "reddit", "cnn", "reddit_tifu", "MN" (for Multi-News), "pubmed", "xsum"
 
