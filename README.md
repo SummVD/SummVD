@@ -2,17 +2,35 @@ SummVD's GitHub page
 
 To run the experiments like in the paper we have built a user-friendly script :
 
-Step 1 : Download via the google drive the datasets, word embedding and parameters : https://drive.google.com/drive/folders/1QjobC4w9G7nd2eva5sURUQ5Ys3s93gan?usp=sharing
-Keep the same file structure, which means that you have to put every file/folder like in the google drive in a folder called SummVD.
+**Step 1** : Download via the google drive the datasets, word embedding and parameters : https://drive.google.com/drive/folders/1QjobC4w9G7nd2eva5sURUQ5Ys3s93gan?usp=sharing
+**Keep the same file structure**, which means that you have to put every file/folder like in the google drive in a folder called SummVD.
 
-Step 2 : Download the github SummVD.py file, and put it to the root of the SummVD folder.
+**Step 2** : Download the github SummVD.py file, and put it to the **root of the SummVD folder**.
 
-Step 3 : You need to have the packages from the requirements.txt with at least the same version on the most important packages which are : gensim==3.8.3 / scipy==1.6.3 / rouge-score==0.0.4 / sklearn == 0.17.2
+**Step 3** : You need to have the packages from the requirements.txt with at least the same version on the most important packages which are : **gensim==3.8.3 / scipy==1.6.3 / rouge-score==0.0.4 / sklearn == 0.17.2**
 
-Step 4 : You can now run the experiments as follow :
+**Step 4** : You can now run the experiments as follow :
 "python SummVD.py --dataset_name "dataset_name" --size_output 0 "
-With dataset_name one of the following : "duc", "reddit", "cnn", "reddit_tifu", "MN" (for Multi-News), "pubmed", "xsum"
+**With dataset_name one of the following :** "duc", "reddit", "cnn", "reddit_tifu", "MN" (for Multi-News), "pubmed", "xsum"
 
+
+**Experimental functions :**
+
+To run the full length dataset, for size_output put the value 0, a custom value will take the n first documents and abstracts of the dataset.
+
+If you want to try a custom dataset, you will have to call it : dataset_name + "_documents.pkl" and the gold : dataset_name + "_gold.pkl" .
+If you want to try a custom word embedding, it has to work as follow : wordembedding["word"] => vector and have the format like the one in our Word Embedding folder.
+In that case, swap the word embedding model from the Word Embedding folder.
+
+If you want to only score you will have yo use : python SummVD.py --dataset_name "dataset_name" --scoring True
+With the dataset added as dataset_name + "_documents.pkl" and the gold : dataset_name + "_gold.pkl" in Datasets folder
+And your summaries in output folder with as "dataset_name.txt"
+
+If parameters already exist for a dataset, it will automatically choose it. 
+We present here the parameters associated with the number of sentences announced in the paper.
+Better results can be achieved with different number of sentences as talked about in the paper.
+To obtain those results, you will have to run the optimisation with the number of sentences wanted.
+And if you want to do your own optimisation, don't copy the parameters file in your repository. The method will create it automatically for you.
 
 
 <!--
