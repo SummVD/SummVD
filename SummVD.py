@@ -23,11 +23,6 @@ from operator import itemgetter
 from gensim.test.utils import datapath, get_tmpfile
 import argparse
 
-#from gensim.models.callbacks import CallbackAny2Vec
-#import operator
-#from gensim.models import Word2Vec
-
-
 #%% Datasets
 
 def load_dataset(dataset_name):
@@ -38,55 +33,64 @@ def load_dataset(dataset_name):
     R2 = None
     RL = None
     
-    
-    if(dataset_name == "MN"): 
-        file = open("./Datasets/MultiNewsArticles",'rb')
-        articles = pickle.load(file)
-        file = open("./Datasets/MultiNewsGold",'rb')
-        abstracts = pickle.load(file)
-                
-    if(dataset_name == "reddit"): 
-        file = open("./Datasets/RedditArticles.pkl",'rb')
-        articlesR = pickle.load(file)
-        articles =[]
-        for article in articlesR:
-            articles.append(article[0])
+    if dataset_name in ["cnn","xsum","reddit_tifu", "pubmed", "MN", "duc", "reddit"]:
+
         
-        abstracts = []
-        with open("./Datasets/RedditGold", "r", encoding = "utf-8") as fh:
-                for line in fh:
-                    abstracts.append(line)
+        if(dataset_name == "MN"): 
+            file = open("./Datasets/MultiNewsArticles",'rb')
+            articles = pickle.load(file)
+            file = open("./Datasets/MultiNewsGold",'rb')
+            abstracts = pickle.load(file)
                     
-    if(dataset_name == "reddit_tifu"): 
-        file = open("./Datasets/RedditTifuArticles",'rb')
-        articles = pickle.load(file)
-        file = open("./Datasets/RedditTifuGold",'rb')
-        abstracts = pickle.load(file)
+        if(dataset_name == "reddit"): 
+            file = open("./Datasets/RedditArticles.pkl",'rb')
+            articlesR = pickle.load(file)
+            articles =[]
+            for article in articlesR:
+                articles.append(article[0])
             
-    if(dataset_name == "duc"):
-        file = open("./Datasets/DUCArticles",'rb')
-        articles = pickle.load(file)
-        file = open("./Datasets/DUCGold",'rb')
-        abstracts = pickle.load(file)
-    
-    if(dataset_name == "xsum"): 
-        file = open("./Datasets/XSumArticles",'rb')
-        articles = pickle.load(file)
-        file = open("./Datasets/XSumGold",'rb')
-        abstracts = pickle.load(file)
-                    
-    if(dataset_name == "pubmed"): 
-        file = open("./Datasets/PubMedArticles",'rb')
-        articles = pickle.load(file)
-        file = open("./Datasets/PubMedGold",'rb')
-        abstracts = pickle.load(file)
-        
-    if(dataset_name == "cnn"): 
-        file = open("./Datasets/CNNArticles",'rb')
-        articles = pickle.load(file)
-        file = open("./Datasets/CNNGold",'rb')
-        abstracts = pickle.load(file)
+            abstracts = []
+            with open("./Datasets/RedditGold", "r", encoding = "utf-8") as fh:
+                    for line in fh:
+                        abstracts.append(line)
+                        
+        if(dataset_name == "reddit_tifu"): 
+            file = open("./Datasets/RedditTifuArticles",'rb')
+            articles = pickle.load(file)
+            file = open("./Datasets/RedditTifuGold",'rb')
+            abstracts = pickle.load(file)
                 
+        if(dataset_name == "duc"):
+            file = open("./Datasets/DUCArticles",'rb')
+            articles = pickle.load(file)
+            file = open("./Datasets/DUCGold",'rb')
+            abstracts = pickle.load(file)
+        
+        if(dataset_name == "xsum"): 
+            file = open("./Datasets/XSumArticles",'rb')
+            articles = pickle.load(file)
+            file = open("./Datasets/XSumGold",'rb')
+            abstracts = pickle.load(file)
+                        
+        if(dataset_name == "pubmed"): 
+            file = open("./Datasets/PubMedArticles",'rb')
+            articles = pickle.load(file)
+            file = open("./Datasets/PubMedGold",'rb')
+            abstracts = pickle.load(file)
+            
+        if(dataset_name == "cnn"): 
+            file = open("./Datasets/CNNArticles",'rb')
+            articles = pickle.load(file)
+            file = open("./Datasets/CNNGold",'rb')
+            abstracts = pickle.load(file)
+                    
+    else:
+
+        file = open(str("./Datasets/"+dataset_name+"_documents.pkl"),'rb')
+        articles = pickle.load(file)
+        
+        file = open(str("./Datasets/"+dataset_name+"_gold.pkl"),'rb')
+        abstracts = pickle.load(file)
     
     
     articlesCl = []  
@@ -303,7 +307,7 @@ def transformArticleVocabularyV2(article, dicWordClus):
     
     return articleTransformed
 
-def launcherACPTunedCSV(wrt, articles, abstracts, dataset_name, processing, model, nbCluster, acpComponents, 
+def launcherSVD(wrt, articles, abstracts, dataset_name, processing, model, nbCluster, acpComponents, 
                 size = 50, output_file = "", method = "hierarchique", 
                 stem = False, lem = False, Scorer = True,
                 normalizeAfterwards = False, normalizeVariance = False, pond = False,
@@ -490,7 +494,7 @@ def launcherACPTunedCSV(wrt, articles, abstracts, dataset_name, processing, mode
                 rLscore.append(scorer.score(" ".join(summ),
                           abstracts[ind])["rougeL"][2])
                 
-                print(ind)
+                #print(ind)
 
                 
             
@@ -500,32 +504,16 @@ def launcherACPTunedCSV(wrt, articles, abstracts, dataset_name, processing, mode
             r2final.append(round(statistics.mean(r2score),5))
             rLfinal.append(round(statistics.mean(rLscore),5))
             
-            print(percent, "%", "add word/axe:",addWordPerAxe, " R1:",round(statistics.mean(r1score),5), "R2:",round(statistics.mean(r2score),5), "RL:",round(statistics.mean(rLscore),5))#, "Lead-k bias :",round(Leadkbias,2),"%")
+            #print(percent, "%", "add word/axe:",addWordPerAxe, " R1:",round(statistics.mean(r1score),5), "R2:",round(statistics.mean(r2score),5), "RL:",round(statistics.mean(rLscore),5))#, "Lead-k bias :",round(Leadkbias,2),"%")
             #print(positionBiasFull)
-                        
+        
+        print("output written")
             
         #print()
         #print(percent, "took %s seconds " % (time.time() - start_time))
             
        
-    #print("processing:",processing)
-    #print("stem:",stem)
-    #print("lem:", lem)
-    #print("method:",method)
-    #print("size:",size)
-    #print("tsne:",tsne)
-    #print("normalizeCount:", normalizeCount)
-    #print("normalizeAfterwards:",normalizeAfterwards)
-    #print("normalizeVariance:", normalizeVariance)
-    #print('addAxes:', addAxes)
-    #print("addWordPerAxe:",addWordPerAxe)
-    #print("scorer:", Scorer)
-    #print("acpComponents:",acpComponents)
-    #print("pond:",pond)
-    #print("axeNumber:",axeNumber)
-    #print("normalizeAllAxes:",normalizeAllAxes)
-    #print("Dataset name :", dataset_name)
-    #print("model:", model)
+
     
     maxi = 0
     indexMax =0
@@ -580,6 +568,8 @@ def optimize(model, articles, abstracts, dataset_name, size, numberSentencesOP =
         lemVar = False
         print("no proc parameters")
         
+    print("optimizing")
+        
     acpComponents = numberSentencesOP
     
     listeRougeScores = []
@@ -592,14 +582,14 @@ def optimize(model, articles, abstracts, dataset_name, size, numberSentencesOP =
     addW=0
     for addWord in range(6):
         if addWord == 0:
-            bestTemp, bestPercent, x = launcherACPTunedCSV(wrt, articles, abstracts, dataset_name, processin, model , [i for i in np.arange(100, 0, step)], acpComponents = acpComponents, 
+            bestTemp, bestPercent, x = launcherSVD(wrt, articles, abstracts, dataset_name, processin, model , [i for i in np.arange(100, 0, step)], acpComponents = acpComponents, 
                     size = size, method = "hierarchique", 
                     stem = stemVar, lem = lemVar, Scorer = True,
                     normalizeAfterwards = False, normalizeVariance = False, 
                     pond=False, addAxes = 0, addWordPerAxe = addWord, axeNumber= 0, normalizeAllAxes= False, reverse = False, normalizeModels= False)
             addW = addWord
         else:
-            temp, percent, x = launcherACPTunedCSV(wrt, articles, abstracts, dataset_name,  processin, model , [i for i in np.arange(100, 0, step)], acpComponents = acpComponents, 
+            temp, percent, x = launcherSVD(wrt, articles, abstracts, dataset_name,  processin, model , [i for i in np.arange(100, 0, step)], acpComponents = acpComponents, 
                     size = size, method = "hierarchique", 
                     stem = stemVar, lem = lemVar, Scorer = True, 
                     normalizeAfterwards = False, normalizeVariance = False, 
@@ -618,8 +608,8 @@ def optimize(model, articles, abstracts, dataset_name, size, numberSentencesOP =
             
     listeRougeScores.append(bestTemp)
     percentCorresponding.append(bestPercent)
-    print(bestTemp)
-    print(bestPercent)
+    #print(bestTemp)
+    #print(bestPercent)
     
 
             
@@ -631,14 +621,14 @@ def optimize(model, articles, abstracts, dataset_name, size, numberSentencesOP =
     axx=0
     for axe in range(3):
         if axe == 0:
-            bestTemp, bestPercent, x = launcherACPTunedCSV(wrt, articles, abstracts, dataset_name, processin, model , [i for i in np.arange(100, 100 + step, step)], acpComponents = acpComponents, 
+            bestTemp, bestPercent, x = launcherSVD(wrt, articles, abstracts, dataset_name, processin, model , [i for i in np.arange(100, 100 + step, step)], acpComponents = acpComponents, 
                         size = size, method = "hierarchique", 
                         stem = stemVar, lem = lemVar, Scorer = True,
                         normalizeAfterwards = False, normalizeVariance = True, 
                         pond=False, addAxes = 0, addWordPerAxe = 0, axeNumber= axe, normalizeAllAxes= False, reverse = False, normalizeModels= False)
             axx = axe
         else:
-            temp, percent, x = launcherACPTunedCSV(wrt, articles, abstracts, dataset_name, processin, model , [i for i in np.arange(100, 100 + step, step)], acpComponents = acpComponents, 
+            temp, percent, x = launcherSVD(wrt, articles, abstracts, dataset_name, processin, model , [i for i in np.arange(100, 100 + step, step)], acpComponents = acpComponents, 
                         size = size, method = "hierarchique", 
                         stem = stemVar, lem = lemVar, Scorer = True,
                         normalizeAfterwards = False, normalizeVariance = True, 
@@ -663,8 +653,8 @@ def optimize(model, articles, abstracts, dataset_name, size, numberSentencesOP =
             
     listeRougeScores.append(bestTemp)
     percentCorresponding.append(bestPercent)
-    print(bestTemp)
-    print(bestPercent)
+    #print(bestTemp)
+    #print(bestPercent)
     
     
     # select the best heuristic between single document and multidocument heuristic
@@ -739,7 +729,7 @@ def launchFull(model, articles, abstracts, dataset_name, params, size = 0, step 
     
     # multi document heuristic
     if params[-1] == "md":
-        bestTemp, bestPercent, x = launcherACPTunedCSV(wrt, articles, abstracts, dataset_name, processin, model , [int(params[1])], acpComponents = acpComponents, 
+        bestTemp, bestPercent, x = launcherSVD(wrt, articles, abstracts, dataset_name, processin, model , [int(params[1])], acpComponents = acpComponents, 
             size = size, output_file = output_file, method = "hierarchique", 
             stem = stemVar, lem = lemVar, Scorer = True, 
             normalizeAfterwards = False, normalizeVariance = False, 
@@ -749,7 +739,7 @@ def launchFull(model, articles, abstracts, dataset_name, params, size = 0, step 
     
     # single document heuristic
     else:
-        bestTemp, bestPercent, x = launcherACPTunedCSV(wrt, articles, abstracts, dataset_name, processin, model , [int(params[1])], acpComponents = acpComponents, 
+        bestTemp, bestPercent, x = launcherSVD(wrt, articles, abstracts, dataset_name, processin, model , [int(params[1])], acpComponents = acpComponents, 
             size = size, output_file = output_file, method = "hierarchique", 
             stem = stemVar, lem = lemVar, Scorer = True,
             normalizeAfterwards = False, normalizeVariance = True, 
@@ -768,10 +758,10 @@ def summVD(word_embedding, dataset_name = "", optimizing_rate = 0, testSize = 10
         articles, abstracts = load_dataset(dataset_name)     
     # For custom dataset
     else:
-        file = open(str(dataset_name+"_documents.pkl"),'rb')
+        file = open(str("./Datasets/"+dataset_name+"_documents.pkl"),'rb')
         articles = pickle.load(file)
         
-        file = open(str(dataset_name+"_gold.pkl"),'rb')
+        file = open(str("./Datasets/"+dataset_name+"_gold.pkl"),'rb')
         abstracts = pickle.load(file)
     
     
@@ -813,16 +803,12 @@ def scoring(dataset_name):
 def read_arguments():
     # read arguments
     parser = argparse.ArgumentParser()
-    parser.add_argument("--dataset_path", type=str, default="Datasets/")
-    parser.add_argument("--parameters_path", type=str, default="")
     parser.add_argument("--word_embedding_path", type=str, default="./Word Embedding Model/glove_word_embedding.pkl")
-    #parser.add_argument("--output_path", type=str, default="./output/")
     parser.add_argument("--dataset_name", type=str)
-    parser.add_argument("--optimisation_rate", type=int, default=0)
+    parser.add_argument("--optimisation_rate", type=float, default=0.005)
     parser.add_argument("--size_output", type=int, default=0)
     parser.add_argument("--nb_sentences", type=int, default=0)
     parser.add_argument("--scoring", type=bool, default = False)
-    #parser.add_argument("--", type=str)
 
     return parser.parse_args()
     
@@ -833,9 +819,6 @@ def main():
     # read arguments
     args=read_arguments() 
     #print("arguments",args)
-    
-    dataset_path = args.dataset_path
-    parameters_path = args.parameters_path
     word_embedding_path = args.word_embedding_path
     dataset_name = args.dataset_name
     optimisation_rate = args.optimisation_rate
