@@ -61,8 +61,13 @@ In this case you can add to the original script the following :
 ```
 --optimisation_rate 0.004 --nb_sentences n  
 ```
-
-
+  
+  
+    
+### Questions, issues, comments ? Let us know !
+        
+        
+        
 <!--
 **SummVD/SummVD** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
