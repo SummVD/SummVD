@@ -56,6 +56,28 @@ We present here the method associated with the output made of the same number of
 Better results can be achieved with different number of sentences, refered as "n". 
   
     
+## TextRank computation time against SummVD on very long text :    
+After the results shown in the paper, we can wonder how does our method compare to TextRank on very long documents.
+We implement this comparaison by concatenating X number of documents from any dataset, and running both methods on this newly created very long document.
+You can run the experiment for each dataset using the following : 
+
+```
+python SummVD.py --dataset_name "dataset_name" --size_output 200 --longDocument "summvd"
+```
+Note that --longDocument "summvd" runs the experiment for summvd, then you can lauch it for TextRank using : 
+```
+--longDocument "textrank"
+```
+We obtained the following times using CNN and the concatenation of 200/500/1000/10000 documents: 
+
+| Number of documents concatenated (CNN) | TextRank | SummVD | 
+|---|---|---| 
+| 200 | 44s | 46s | 
+| 500 | 301s | 132s |  
+| 1000 | 1219s | 284s | 
+| 10000 | +20h | 4731s |
+
+
 ### Questions, issues, comments ? Let us know !
         
         
