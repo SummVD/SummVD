@@ -33,9 +33,9 @@ To run the full length dataset, for size_output put the value 0, a custom value 
 
 If you want to try a custom dataset, you will have to call it : dataset_name + "_documents.pkl" and the gold : dataset_name + "_gold.pkl". You will then be able to run it with :  
 ```
---dataset_name "dataset_name" --nb_sentences n --optimisation_rate xxx  
+--dataset_name "dataset_name" --nb_sentences n --heuristic_rate xxx  
 ```
-Optimisation rate (optionnal) means xxx * len(documents) optimisation of parameters. By default it is set to 0.004. Arrange yourself to have at least 15 or more examples in order to get the best results.  
+heuristic_rate (optionnal) means xxx * len(documents) to automaticaly choose the parameters. By default it is set to 0.004. Arrange yourself to have at least 15 or more examples in order to get the best results.  
 The .pkl data has to work with :  
 ```
 documents = pickle.load(open(dataset_name + "_documents.pkl", "rb"))
@@ -52,16 +52,8 @@ If you only want to use our Rouge scoring you will have to use : python SummVD.p
 With the dataset added as dataset_name + "_documents.pkl" and the gold : dataset_name + "_gold.pkl" in Datasets folder.  
 Your summaries will have to be in output folder as "dataset_name.txt"
 
-If parameters already exist for a dataset, it will automatically choose it.  
-We present here the parameters associated with the number of sentences announced in the paper.  
-Better results can be achieved with different number of sentences, refered as "n", as talked about in the paper.  
-To obtain those results, you will have to run the optimisation with the number of sentences wanted.
-And if you want to do your own optimisation, don't copy the parameters file in your repository. The method will create it automatically for you.  
-In this case you can add to the original script the following :  
-```
---optimisation_rate 0.004 --nb_sentences n  
-```
-  
+We present here the method associated with the output made of the same number of sentences announced in the paper.  
+Better results can be achieved with different number of sentences, refered as "n". 
   
     
 ### Questions, issues, comments ? Let us know !
