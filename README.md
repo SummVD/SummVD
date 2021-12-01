@@ -56,6 +56,9 @@ We present here the method associated with the output made of the same number of
 Better results can be achieved with different number of sentences, refered as "n". 
   
     
+    
+    
+    
 ## TextRank computation time against SummVD on very long text :    
 After seing the results shown in the paper, one can wonder how does our method compare to TextRank on very long documents.
 We implement this comparaison by concatenating X number of documents from any dataset, and running both methods on this newly created very long document.
