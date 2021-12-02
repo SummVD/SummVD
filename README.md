@@ -9,7 +9,7 @@
 
 2. Download the github SummVD.py file, and put it to the **root of the SummVD folder**.
 
-3. You need to have the packages from the requirements.txt with at least the same version on the most important packages which are : **gensim==3.8.3 / scipy==1.6.3 / rouge-score==0.0.4 / sklearn == 0.17.2 / nltk == 3.5 / numpy == 1.19.2**
+3. You need to have the packages from the requirements.txt with at least the same version on the most important packages which are : **gensim==3.8.3 / scipy==1.6.3 / rouge-score==0.0.4 / sklearn==0.17.2 / nltk==3.5 / numpy==1.19.2**
 
 4. You can now run the experiments from the root of your SummVD folder as follow :  
 ```
