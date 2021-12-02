@@ -21,7 +21,7 @@ python SummVD.py --dataset_name "dataset_name" --size_output 0
 ```
 python SummVD.py --dataset_name "dataset_name" --scoring True
 ```
-
+Note : You can also score your own summaries by replacing "dataset_name" by the name of your .txt file in the "output" folder.
 
 
 
