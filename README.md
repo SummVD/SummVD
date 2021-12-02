@@ -34,7 +34,7 @@ python SummVD.py --dataset_name "dataset_name" --size_output 200 --longDocument 
 ```
 Note that --longDocument "summvd" runs the experiment for summvd, then you can lauch it for TextRank using : 
 ```
---longDocument "textrank"
+python SummVD.py --dataset_name "dataset_name" --size_output 200 --longDocument "textrank"
 ```
 We obtained the following times using CNN and the concatenation of 200/500/1000/10000 documents (note that the results may vary depending on your system): 
 
