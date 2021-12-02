@@ -74,7 +74,7 @@ We obtained the following times using CNN and the concatenation of 200/500/1000/
 
 | Number of documents concatenated (CNN) | TextRank | SummVD | 
 |---|---|---| 
-| 200 | 44s | 46s | 
+| 200 | 44s | 45s | 
 | 500 | 301s | 132s |  
 | 1000 | 1219s | 284s | 
 | 10000 | +20h | 4731s |
