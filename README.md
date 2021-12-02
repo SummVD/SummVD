@@ -13,7 +13,7 @@
 
 4. You can now run the experiments from the root of your SummVD folder as follow :  
 ```
-python SummVD.py --dataset_name "dataset_name" --size_output 0  
+python SummVD.py --dataset_name "dataset_name" --size_output 300  
 ```
 **With dataset_name one of the following :** "duc", "reddit", "cnn", "reddit_tifu", "MN" (for Multi-News), "pubmed", "xsum". (size_output 0 means that we test the full length dataset. To run n examples, simply put n instead).
 
