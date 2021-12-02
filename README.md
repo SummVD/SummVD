@@ -24,7 +24,26 @@ python SummVD.py --dataset_name "dataset_name" --scoring True
 Note : You can also score your own summaries by replacing "dataset_name" by the name of your .txt file in the "output" folder.
 
 
+## TextRank computation time against SummVD on very long text :    
+After seing the results shown in the paper, one can wonder how does our method compare to TextRank on very long documents.
+We implement this comparaison by concatenating X number of documents from any dataset, and running both methods on this newly created very long document.
+You can run the experiment for each dataset using the following : 
 
+```
+python SummVD.py --dataset_name "dataset_name" --size_output 200 --longDocument "summvd"
+```
+Note that --longDocument "summvd" runs the experiment for summvd, then you can lauch it for TextRank using : 
+```
+--longDocument "textrank"
+```
+We obtained the following times using CNN and the concatenation of 200/500/1000/10000 documents (note that the results may vary depending on your system): 
+
+| Number of documents concatenated (CNN) | TextRank | SummVD | 
+|---|---|---| 
+| 200 | 44s | 45s | 
+| 500 | 301s | 132s |  
+| 1000 | 1219s | 284s | 
+| 10000 | +20h | 4731s |
 
 
 ## Experimental functions :
@@ -57,27 +76,7 @@ Better results can be achieved with different number of sentences, refered as "n
     
      
       
-      
-## TextRank computation time against SummVD on very long text :    
-After seing the results shown in the paper, one can wonder how does our method compare to TextRank on very long documents.
-We implement this comparaison by concatenating X number of documents from any dataset, and running both methods on this newly created very long document.
-You can run the experiment for each dataset using the following : 
-
-```
-python SummVD.py --dataset_name "dataset_name" --size_output 200 --longDocument "summvd"
-```
-Note that --longDocument "summvd" runs the experiment for summvd, then you can lauch it for TextRank using : 
-```
---longDocument "textrank"
-```
-We obtained the following times using CNN and the concatenation of 200/500/1000/10000 documents (note that the results may vary depending on your system): 
-
-| Number of documents concatenated (CNN) | TextRank | SummVD | 
-|---|---|---| 
-| 200 | 44s | 45s | 
-| 500 | 301s | 132s |  
-| 1000 | 1219s | 284s | 
-| 10000 | +20h | 4731s |
+     
 
 
 ### Questions, issues, comments ? Let us know !
