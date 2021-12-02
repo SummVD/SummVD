@@ -70,7 +70,7 @@ Note that --longDocument "summvd" runs the experiment for summvd, then you can l
 ```
 --longDocument "textrank"
 ```
-We obtained the following times using CNN and the concatenation of 200/500/1000/10000 documents: 
+We obtained the following times using CNN and the concatenation of 200/500/1000/10000 documents (note that the results may vary depending on your system): 
 
 | Number of documents concatenated (CNN) | TextRank | SummVD | 
 |---|---|---| 
