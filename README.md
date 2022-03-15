@@ -48,19 +48,6 @@ We obtained the following times using CNN and the concatenation of 200/500/1000/
 
 ## Experimental functions :
 
-To run the full length dataset, for size_output put the value 0, a custom value will take the n first documents and abstracts of the dataset.
-
-If you want to try a custom dataset, you will have to call it : dataset_name + "_documents.pkl" and the gold : dataset_name + "_gold.pkl". You will then be able to run it with :  
-```
---dataset_name "dataset_name" --nb_sentences n --heuristic_rate xxx  
-```
-heuristic_rate (optionnal) means xxx * len(documents) to automaticaly choose the parameters. By default it is set to 0.004. Arrange yourself to have at least 15 or more examples in order to get the best results.  
-The .pkl data has to work with :  
-```
-documents = pickle.load(open(dataset_name + "_documents.pkl", "rb"))
-gold = pickle.load(open(dataset_name + "_gold.pkl", "rb"))
-```
-
 If you want to try a custom word embedding, it has to be in .pkl format. it has to work as follow : wordembedding["word"] => vector.  
 In that case, simply add :  
 ```
