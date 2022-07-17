@@ -15,7 +15,7 @@ rouge==1.0.0
 rouge-score==0.0.4
 scikit-image==0.17.2
 scipy==1.6.3
-snowballstemmer==2.0.0
+snowballstemmer==2.0.0 
 
 
 
