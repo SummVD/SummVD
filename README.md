@@ -67,7 +67,7 @@ Better results can be achieved with different number of sentences, refered as "n
      
 
 
-### Questions, issues, comments ? Let us know !
+### Questions, issues, comments ? Let us know ! 
         
         
         
