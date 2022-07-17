@@ -851,11 +851,11 @@ def clus_heuristic(model, articles, abstracts, dataset_name, size, numberSentenc
     percentCorresponding = []
     params = []
     
-    # tries the multi document heuristic
+
     bestTemp = []
     temp = [0,0,0]
     addW=0
-    print("multi, kd:", kd, "clustering:", ordreClus)
+
     for addWord in range(6):
         if addWord == 0:
             bestTemp, bestPercent, x = launcherSVD(wrt, articles, abstracts, dataset_name, processin, model , [i for i in np.arange(100, 0, step)], acpComponents = acpComponents, 
@@ -864,7 +864,7 @@ def clus_heuristic(model, articles, abstracts, dataset_name, size, numberSentenc
                     normalizeAfterwards = False, normalizeVariance = False, 
                     pond=False, addAxes = 0, addWordPerAxe = addWord, axeNumber= 0, normalizeAllAxes= False, reverse = False, normalizeModels= False)
             addW = addWord
-            print(bestTemp, "params :", bestPercent, addWord, "md")
+            #print(bestTemp, "params :", bestPercent, addWord, "md")
         else:
             temp, percent, x = launcherSVD(wrt, articles, abstracts, dataset_name,  processin, model , [i for i in np.arange(100, 0, step)], acpComponents = acpComponents, 
                     size = size, method = "hierarchique",  kd = kd, ordreClus = ordreClus,
@@ -872,7 +872,7 @@ def clus_heuristic(model, articles, abstracts, dataset_name, size, numberSentenc
                     normalizeAfterwards = False, normalizeVariance = False, 
                     pond=False, addAxes = 0, addWordPerAxe = addWord, axeNumber= 0, normalizeAllAxes= False, reverse = False, normalizeModels= False)
             addW = addWord
-            print(temp, "params :", percent, addWord, "md")
+            #print(temp, "params :", percent, addWord, "md")
             
         somme = 0
         bestSomme = 0
@@ -892,12 +892,10 @@ def clus_heuristic(model, articles, abstracts, dataset_name, size, numberSentenc
 
             
     
-    # tries the single document heuristic
     
     bestTemp = []
     temp = [0,0,0]
     axx=0
-    print("single, kd:", kd, "clustering:", ordreClus)
     for axe in range(3):
         if axe == 0:
             bestTemp, bestPercent, x = launcherSVD(wrt, articles, abstracts, dataset_name, processin, model , [i for i in np.arange(100, 100+step, step)], acpComponents = acpComponents, 
@@ -906,7 +904,7 @@ def clus_heuristic(model, articles, abstracts, dataset_name, size, numberSentenc
                         normalizeAfterwards = False, normalizeVariance = True, 
                         pond=False, addAxes = 0, addWordPerAxe = 0, axeNumber= axe, normalizeAllAxes= False, reverse = False, normalizeModels= False)
             axx = axe
-            print(bestTemp, "params :", bestPercent, axe, "sd")
+            #print(bestTemp, "params :", bestPercent, axe, "sd")
         else:
             temp, percent, x = launcherSVD(wrt, articles, abstracts, dataset_name, processin, model , [i for i in np.arange(100, 100+step, step)], acpComponents = acpComponents, 
                         size = size, method = "hierarchique", kd = kd, ordreClus = ordreClus,
@@ -914,7 +912,7 @@ def clus_heuristic(model, articles, abstracts, dataset_name, size, numberSentenc
                         normalizeAfterwards = False, normalizeVariance = True, 
                         pond=False, addAxes = 0, addWordPerAxe = 0, axeNumber= axe, normalizeAllAxes= False, reverse = False, normalizeModels= False)
             axx = axe
-            print(temp, "params :", percent, axe, "sd")
+            #print(temp, "params :", percent, axe, "sd")
             
         somme = 0
         bestSomme = 0
@@ -972,7 +970,7 @@ def clus_heuristic(model, articles, abstracts, dataset_name, size, numberSentenc
         
         file = open('./Datasets/{}.pkl'.format(paramfile), 'wb')
         pickle.dump(para, file)
-    print("\nbest params : ", params)
+    #print("\nbest params : ", params)
     return params
     
 def launchFull(model, articles, abstracts, dataset_name, params, size = 0, step = -5, dataset = "cnn", 
